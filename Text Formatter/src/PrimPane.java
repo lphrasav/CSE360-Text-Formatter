@@ -10,13 +10,48 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 //needed for panes
-public class PrimPane {
-    private TextArea errorDetails;      //for user to read formatted text
+public class PrimPane extends HBox {
+    private TextArea outputDetails;      //for user to read formatted text
     private Button cinput, soutput, format; //choose in, save out, format
+    private TextField inTF, outTF;
     private GridPane gridPane;          //gridpane to hold our stuff
     //
     public PrimPane(){
         //set up the pane/gui bit here
+        //first text area
+        outputDetails = new TextArea();
+        outputDetails.setWrapText(true);
+        outputDetails.setText("Nothing");
+        // input and output buttons and text fields
+        cinput = new Button("Input File");  //calls file picker
+        inTF = new TextField();             //shows name of file
+        soutput = new Button("Save File");  //calls file saver
+        outTF = new TextField();             //input for name to save as
+        format = new Button("Format File");
+        // etc
+        //gridpane to hold it up
+        gridPane = new GridPane();
+
+        gridPane.setHgap(10);   //gap between columns - semi-arbitrary
+        gridPane.setVgap(10);
+        //set input button to right of text field - col 0/2, row 0
+        GridPane.setConstraints(inTF, 0, 0, 1, 1);
+        GridPane.setConstraints(cinput, 1, 0, 1, 1);
+        //set output button to right of text field - col 0/1, row 1
+        GridPane.setConstraints(outTF, 0, 1, 1, 1);
+        GridPane.setConstraints(soutput, 1, 1, 1, 1);
+        //set format button to below above things - col 1, row 2
+        GridPane.setConstraints(format, 1, 2, 1, 1);
+        //set output details to column 3 row 0, size of 1 columns 50 rows
+        GridPane.setConstraints(outputDetails, 3, 0, 1, 50);
+        
+        //add everything to GridPane [important]
+        //using method described in javadocs
+        gridPane.getChildren().addAll(inTF, cinput, outTF, soutput, format, outputDetails);
+        //adds the left and right side of the input pane information and text
+        //fields to our inputpane proper. laptopDetails handles scrolling
+        //automatically, which is nice.
+        this.getChildren().add(gridPane); //set to our HBox
     }
     
     private class ButtonHandler2 implements EventHandler<ActionEvent> {

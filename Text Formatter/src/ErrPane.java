@@ -13,7 +13,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 //needed for panes
 
-public class ErrPane {
+public class ErrPane extends HBox {
     private TextArea errorDetails;      //for user to read errors
     private Button clear;               //clears errors
     private GridPane gridPane;          //gridpane to hold errors and button

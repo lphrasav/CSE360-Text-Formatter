@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 import java.util.*;
 
-public class TextFormatter
+public class TextFormatter extends Application
 {
     private TabPane tabPane;
     private ErrPane errPane;
@@ -18,12 +18,30 @@ public class TextFormatter
     
     public void start(Stage stage)
     {
+        StackPane root = new StackPane();
+        PrimPane prim = new PrimPane();
+ 	ErrPane error = new ErrPane();
+        tabPane = new TabPane();
+        Tab tab1 = new Tab();
+        tab1.setText("Input Pane");
+        tab1.setContent(prim);
+        Tab tab2 = new Tab();
+        tab2.setText("Error Pane");
+        tab2.setContent(error);
+        tabPane.getSelectionModel().select(0);
+        tabPane.getTabs().addAll(tab1, tab2);
+
+        root.getChildren().add(tabPane);
+        
+        Scene scene = new Scene(root, 900, 800);
+        stage.setTitle("Text Formatter");
+        stage.setScene(scene);
         stage.show();
     }
     
     public static void main (String[] args)
     {
-        
+        launch(args);
 
     }// end of main
 }// end of TextFormatter class
