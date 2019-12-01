@@ -10,6 +10,10 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 //needed for panes
+
+/*
+// uses code from an assignment about laptops which required a gui.
+*/
 public class PrimPane extends HBox {
     private TextArea outputDetails;      //for user to read formatted text
     private Button cinput, soutput, format; //choose in, save out, format
@@ -34,23 +38,22 @@ public class PrimPane extends HBox {
 
         gridPane.setHgap(10);   //gap between columns - semi-arbitrary
         gridPane.setVgap(10);
-        //set input button to right of text field - col 0/2, row 0
-        GridPane.setConstraints(inTF, 0, 0, 1, 1);
-        GridPane.setConstraints(cinput, 1, 0, 1, 1);
-        //set output button to right of text field - col 0/1, row 1
-        GridPane.setConstraints(outTF, 0, 1, 1, 1);
-        GridPane.setConstraints(soutput, 1, 1, 1, 1);
-        //set format button to below above things - col 1, row 2
-        GridPane.setConstraints(format, 1, 2, 1, 1);
-        //set output details to column 3 row 0, size of 1 columns 50 rows
-        GridPane.setConstraints(outputDetails, 3, 0, 1, 50);
+        //set input button to right of text field - col 0/2, row 1
+        GridPane.setConstraints(inTF, 1, 1, 1, 1);
+        GridPane.setConstraints(cinput, 2, 1, 1, 1);
+        //set output button to right of text field - col 0/1, row 2
+        GridPane.setConstraints(outTF, 1, 2, 1, 1);
+        GridPane.setConstraints(soutput, 2, 2, 1, 1);
+        //set format button to below above things - col 1, row 3
+        GridPane.setConstraints(format, 2, 3, 1, 1);
+        //set output details to column 3 row 1, size of 1 columns 50 rows
+        GridPane.setConstraints(outputDetails, 3, 1, 1, 50);
         
         //add everything to GridPane [important]
         //using method described in javadocs
         gridPane.getChildren().addAll(inTF, cinput, outTF, soutput, format, outputDetails);
         //adds the left and right side of the input pane information and text
-        //fields to our inputpane proper. laptopDetails handles scrolling
-        //automatically, which is nice.
+        //fields to our inputpane proper
         this.getChildren().add(gridPane); //set to our HBox
     }
     
