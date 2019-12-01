@@ -25,10 +25,12 @@ public class PrimPane extends HBox {
         //first text area
         outputDetails = new TextArea();
         outputDetails.setWrapText(true);
+        outputDetails.setEditable(false);
         outputDetails.setText("Nothing");
         // input and output buttons and text fields
         cinput = new Button("Input File");  //calls file picker
         inTF = new TextField();             //shows name of file
+        inTF.setEditable(false);
         soutput = new Button("Save File");  //calls file saver
         outTF = new TextField();             //input for name to save as
         format = new Button("Format File");

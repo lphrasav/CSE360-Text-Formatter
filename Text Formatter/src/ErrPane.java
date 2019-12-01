@@ -24,6 +24,7 @@ public class ErrPane extends HBox {
     public ErrPane(){
         errorDetails = new TextArea();
         errorDetails.setWrapText(true);
+        errorDetails.setEditable(false);
         errorDetails.setText("Nothing");
         // input and output buttons and text fields
         clear = new Button("Clear Errors");  //does what it says
