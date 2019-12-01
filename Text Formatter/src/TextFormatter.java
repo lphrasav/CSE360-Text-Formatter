@@ -1,4 +1,5 @@
 //needed for gui
+import java.io.File;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
@@ -9,15 +10,20 @@ import java.util.ArrayList;
 //end needed
 
 import java.util.*;
+import javafx.stage.FileChooser;
 
 public class TextFormatter extends Application
 {
+    private FileChooser fileC;
     private TabPane tabPane;
     private ErrPane errPane;
     private PrimPane primPane;
+    private String errors;
     
+    @Override
     public void start(Stage stage)
     {
+        fileC = new FileChooser();
         StackPane root = new StackPane();
         PrimPane prim = new PrimPane();
  	ErrPane error = new ErrPane();
@@ -44,4 +50,13 @@ public class TextFormatter extends Application
         launch(args);
 
     }// end of main
+    
+    public void setErr(String inErr){
+        errors = inErr;
+        errPane.setErr(errors);
+    }
+    
+    public String getErr(){
+        return errors;
+    }
 }// end of TextFormatter class

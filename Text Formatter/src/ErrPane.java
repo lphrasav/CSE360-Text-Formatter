@@ -25,9 +25,10 @@ public class ErrPane extends HBox {
         errorDetails = new TextArea();
         errorDetails.setWrapText(true);
         errorDetails.setEditable(false);
-        errorDetails.setText("Nothing");
+        errorDetails.setText("");
         // input and output buttons and text fields
-        clear = new Button("Clear Errors");  //does what it says
+        clear = new Button("Clear Error List");  //does what it says
+        clear.setOnAction(new ButtonHandler());
         gridPane = new GridPane();
         GridPane.setConstraints(clear, 1, 1, 1, 1); //top left
         GridPane.setConstraints(errorDetails, 2, 1, 1, 50); //all right side
@@ -40,11 +41,19 @@ public class ErrPane extends HBox {
         this.getChildren().add(gridPane); //set to our HBox
     }
     
-    private class ButtonHandler2 implements EventHandler<ActionEvent> {
+    public void setErr(String inErr){
+        errorDetails.setText(inErr);
+    }
+    
+    private class ButtonHandler implements EventHandler<ActionEvent> {
         //Override the abstact method handle()
 
+        @Override
         public void handle(ActionEvent e) {
             //handle our button
+            if (e.getSource() == clear){
+                errorDetails.setText("");
+            }
         }
     }
     

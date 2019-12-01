@@ -8,7 +8,9 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.paint.Color;
+import java.io.*;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 //needed for panes
 
 /*
@@ -19,14 +21,19 @@ public class PrimPane extends HBox {
     private Button cinput, soutput, format; //choose in, save out, format
     private TextField inTF, outTF;
     private GridPane gridPane;          //gridpane to hold our stuff
+    private FileChooser fileC;
+    private File inFile, outFile;
     //
     public PrimPane(){
+        //file chooser
         //set up the pane/gui bit here
         //first text area
+        fileC = new FileChooser();
+        fileC.setTitle("Choose File");
         outputDetails = new TextArea();
         outputDetails.setWrapText(true);
         outputDetails.setEditable(false);
-        outputDetails.setText("Nothing");
+        outputDetails.setText("");
         // input and output buttons and text fields
         cinput = new Button("Input File");  //calls file picker
         inTF = new TextField();             //shows name of file
@@ -34,6 +41,10 @@ public class PrimPane extends HBox {
         soutput = new Button("Save File");  //calls file saver
         outTF = new TextField();             //input for name to save as
         format = new Button("Format File");
+        cinput.setOnAction(new ButtonHandler());
+        soutput.setOnAction(new ButtonHandler());
+        format.setOnAction(new ButtonHandler());
+        
         // etc
         //gridpane to hold it up
         gridPane = new GridPane();
@@ -59,11 +70,36 @@ public class PrimPane extends HBox {
         this.getChildren().add(gridPane); //set to our HBox
     }
     
-    private class ButtonHandler2 implements EventHandler<ActionEvent> {
+    private class ButtonHandler implements EventHandler<ActionEvent> {
         //Override the abstact method handle()
 
+        @Override
         public void handle(ActionEvent e) {
             //handle our buttons
+            //outputDetails.setText("handle works");
+            if (e.getSource() == cinput){
+                //get input
+                inFile = fileC.showOpenDialog(new Stage()); //gets file
+                if (inFile != null){
+                    inTF.setText(inFile.getName());
+                } else {
+                    inTF.setText("File Not Opened");
+                }
+                
+            } else if (e.getSource() == soutput){
+                //save output
+                //set outFile equal to a new file
+                //write contents of outputDetails to it
+                //save
+                //save where? - can we alter save location?
+                //may need to default to textformatter location
+            } else if (e.getSource() == format){
+                //activate format function
+                //will call something else to do the actual hard work
+                //whatever does will keep track of errors and actual output
+                //and set text of output here
+                //and return errors with TextFormatter's setErr function
+            }
         }
     }
 }
